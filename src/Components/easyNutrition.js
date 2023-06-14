@@ -14,7 +14,7 @@ export const EasyNutrition = () => {
 		<Route path="*" element={
 			<Authorized>
 				<>
-
+                    <NavBar />
 					<ApplicationViews />
 				</>
 			</Authorized>

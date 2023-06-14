@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom"
 
 export const Register = () => {
     const [user, setUser] = useState({
-        email: "",
-        name: "",
-        isEmployee: false
+     name: "",
+     email: "",
+     isEmployee: false,
     })
     let navigate = useNavigate()
 
@@ -25,7 +25,7 @@ export const Register = () => {
                         staff: createdUser.isEmployee
                     }))
 
-                    navigate("/")
+                    navigate("/login")
                 }
             })
     }
@@ -57,9 +57,9 @@ export const Register = () => {
             <form className="form--login" onSubmit={handleRegister}>
                 <h1 className="h3 mb-3 font-weight-normal">Please Register for Easy Nutrition</h1>
                 <fieldset>
-                    <label htmlFor="fullName"> Full Name </label>
+                    <label htmlFor="name"> Full Name </label>
                     <input onChange={updateUser}
-                           type="text" id="fullName" className="form-control"
+                           type="text" id="name" className="form-control"
                            placeholder="Enter your name" required autoFocus />
                 </fieldset>
                 <fieldset>
