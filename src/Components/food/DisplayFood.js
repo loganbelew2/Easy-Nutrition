@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react"
 
-export const DisplayFood = ({ searchState }) => {
+export const DisplayFood = ({ searchState, myList}) => {
     const [searchResults, setSearchResults] = useState([])
     const [selectedFood, setSelectedFood] = useState([])
     
-
     const localEasyUser = localStorage.getItem("easy_user")
     const EasyUserObject = JSON.parse(localEasyUser)
-
 
 
     const handleSearchButton = () => {
@@ -41,23 +39,20 @@ export const DisplayFood = ({ searchState }) => {
                 setSelectedFood({
                     userId: EasyUserObject.id,
                     food: foodName,
-                    nutrients: nutrients
+                    nutrients: nutrients,
+                    listId: parseInt(myList)
                 });
 
                 // Send the POST request
             })
     }
 
-    //fetch list resource and set to state on initial render
-    //create dropdown to choose list# 
-    //when list option is selected then set another state to its value
-    //when add food button is clicked then if state of selected option is 0, window alert to create or add list
-    //else post food item with listId key
-
-
 
 
     const postFoodObject = () => {
+       if (myList === 0) {
+        window.alert("please select a list")
+       } else {
         fetch("http://localhost:8088/foodItems", {
             method: "POST",
             headers: {
@@ -65,14 +60,14 @@ export const DisplayFood = ({ searchState }) => {
             },
             body: JSON.stringify(selectedFood)
         })
-    };
-
+       }
+    }
 
     return (
         <>
             <button onClick={handleSearchButton}>Search</button>
             <div>
-                <select onChange={(e) => e.target.value !== '0' ? handleSelectedFood(e.target.value) : null}>
+                <select required onChange={(e) => e.target.value !== '0' ? handleSelectedFood(e.target.value) : null}>
                     <option value="0">Please select a food</option>
                     {searchResults.length === 0 && (
                         <option disabled>No results found. Please refine your search.</option>

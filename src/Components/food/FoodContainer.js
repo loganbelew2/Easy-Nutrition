@@ -5,6 +5,7 @@ import { DisplayFood } from "./DisplayFood"
 export const FoodContainer = () => {
     const [searchedFood, searchInput] = useState("")
     const [Lists, setLists] = useState([])
+    const [selectedList, setSelectedList] = useState(0)
 
     useEffect(() => {
         fetch(`http://localhost:8088/Lists`)
@@ -14,8 +15,8 @@ export const FoodContainer = () => {
 
     return (<>
          <div>Start your nutrition journey today!</div>
-        <SearchFood setterFunction ={ searchInput} listArray = { Lists } />
-        < DisplayFood searchState = {searchedFood} />
+        <SearchFood setterFunction ={ searchInput} listArray = { Lists } setList = {setSelectedList} />
+        < DisplayFood searchState = {searchedFood} myList = {selectedList}/>
         </>
     )
 }
