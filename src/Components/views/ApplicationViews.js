@@ -1,4 +1,6 @@
 import { Outlet, Route, Router, Routes } from "react-router-dom"
+import { FoodContainer } from "../food/FoodContainer"
+import { CreateList } from "../Lists/createList"
 
 export const ApplicationViews = () => {
 
@@ -7,13 +9,13 @@ export const ApplicationViews = () => {
               <Route path="/" element={
                   <>
                       <h1>Easy Nutrition</h1>
-                      <div>Start your nutrition journey today!</div>
+                     
   
-                      <Outlet />
+                      <Outlet />   
                   </>
               }>
-                
-
+                <Route path="searchFood" element={< FoodContainer/>} />
+                <Route path="createList" element={<CreateList/>} />
               </Route>
           </Routes>
       )
