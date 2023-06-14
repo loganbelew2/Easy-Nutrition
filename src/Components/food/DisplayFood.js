@@ -3,13 +3,12 @@ import { useEffect, useState } from "react"
 export const DisplayFood = ({ searchState }) => {
     const [searchResults, setSearchResults] = useState([])
     const [selectedFood, setSelectedFood] = useState([])
-    const [Lists, setLists] = useState([])
+    
 
     const localEasyUser = localStorage.getItem("easy_user")
     const EasyUserObject = JSON.parse(localEasyUser)
 
 
-    
 
     const handleSearchButton = () => {
         fetch(`https://api.nal.usda.gov/fdc/v1/foods/search?query="${searchState}"&api_key=nUayw6tUK0qnDFUriuJsNuj9epCJa1htM7gbShIB`)
@@ -26,8 +25,8 @@ export const DisplayFood = ({ searchState }) => {
     }
 
 
-    const handleSelectedFood = (food) => {
-        fetch(`https://api.nal.usda.gov/fdc/v1/food/${food}?&api_key=nUayw6tUK0qnDFUriuJsNuj9epCJa1htM7gbShIB`)
+    const handleSelectedFood = (foodId) => {
+        fetch(`https://api.nal.usda.gov/fdc/v1/food/${foodId}?&api_key=nUayw6tUK0qnDFUriuJsNuj9epCJa1htM7gbShIB`)
             .then(response => response.json())
             .then(data => {
                 const foodName = data.description;
