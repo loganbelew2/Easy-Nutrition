@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 export const CreateList = () => {
   const [categories, setCategories] = useState([])
   const [name, setName] = useState("")
   const [selectedCategory, setCategory] = useState(0)
   const [formError, setFormError] = useState(false)
-
+  const navigate = useNavigate()
   const localEasyUser = localStorage.getItem("easy_user")
   const EasyUserObject = JSON.parse(localEasyUser)
 
@@ -30,15 +31,14 @@ export const CreateList = () => {
       userId: EasyUserObject.id
     }
 
-    fetch("http://localhost:8088/Lists", {
+    fetch("http://localhost:8088/lists", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(list)
-    }).then(response => {
-      // Handle response
-    })
+    }).then(navigate("/searchFood")
+    )
   }
 
   return (
