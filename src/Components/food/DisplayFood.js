@@ -35,7 +35,8 @@ export const DisplayFood = ({ searchState, myList}) => {
                 const nutrients = filteredNutrients.map(nutrient => ({
                     marker: identifier,
                     name: nutrient.nutrient.name,
-                    amount: `${nutrient.amount} ${nutrient.nutrient.unitName}`
+                    amount: nutrient.amount,
+                    unit: nutrient.nutrient.unitName
                 }));
 
                 setSelectedFood({
