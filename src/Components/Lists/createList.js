@@ -31,7 +31,7 @@ export const CreateList = () => {
       userId: EasyUserObject.id
     }
 
-    fetch("http://localhost:8088/Lists", {
+    fetch("http://localhost:8088/lists", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
