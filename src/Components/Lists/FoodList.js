@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { calculateSummedNutrients } from "./CalculateSum";
 
 export const FoodList = () => {
   const [lists, setLists] = useState([]);
@@ -8,25 +9,11 @@ export const FoodList = () => {
   const [summedNutrients, setSummedNutrients] = useState({});
 
   useEffect(() => {
-    // Calculate the summed nutrients when the nutrients state changes
-    calculateSummedNutrients();
+    const summedNutrients = calculateSummedNutrients(nutrients); 
+    setSummedNutrients(summedNutrients);
   }, [nutrients]);
 
-  const calculateSummedNutrients = () => {
-    const summedNutrients = nutrients.reduce((accumulator, nutrient) => {
-      if (accumulator.hasOwnProperty(nutrient.name)) {
-        accumulator[nutrient.name].sum += parseFloat(nutrient.amount);
-      } else {
-        accumulator[nutrient.name] = {
-          sum: parseFloat(nutrient.amount),
-          unit: nutrient.unit
-        };
-      }
-      return accumulator;
-    }, {});
-
-    setSummedNutrients(summedNutrients);
-  };
+  
 
   useEffect(() => {
     fetch("http://localhost:8088/Lists")
