@@ -87,64 +87,6 @@ export const DisplayFood = ({ searchState, myList}) => {
             });
         }
       };
-      
-
-    // const postFoodObject = () => {
-    //     if (myList === 0) {
-    //       window.alert("Please select a list");
-    //     } else {
-    //       const postFoodRequest = fetch("http://localhost:8088/foodItems", {
-    //         method: "POST",
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify(selectedFood),
-    //       });
-      
-    //       const postNutrientsRequests = selectedNutrients.nutrients.map((nutrient) =>
-    //         fetch("http://localhost:8088/nutrients", {
-    //           method: "POST",
-    //           headers: {
-    //             "Content-Type": "application/json",
-    //           },
-    //           body: JSON.stringify(nutrient),
-    //         })
-    //       );
-      
-    //       Promise.all([postFoodRequest, ...postNutrientsRequests])
-    //         .then((responses) => {
-    //           // Handle the responses here if needed
-    //           console.log("Fetch requests completed successfully");
-    //         })
-    //         .catch((error) => {
-    //           console.error("Error occurred during fetch requests:", error);
-    //         });
-    //     }
-    //   };
-      
-
-
-
-    // const postFoodObject = () => {
-    //    if (myList === 0) {
-    //     window.alert("please select a list")
-    //    } else {
-    //     fetch("http://localhost:8088/foodItems", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify(selectedFood)
-    //     }).then(
-    //     fetch(`http://localhost:8088/nutrients`, {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify(selectedNutrients)
-    //     }))
-    //    }
-    // }
 
     return (
         <>
