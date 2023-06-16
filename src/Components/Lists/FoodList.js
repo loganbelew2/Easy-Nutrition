@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { calculateSummedNutrients } from "./CalculateSum";
+import { TotalNutrients } from "./TotalNutrients";
 
 export const FoodList = () => {
   const [lists, setLists] = useState([]);
@@ -7,13 +8,19 @@ export const FoodList = () => {
   const [food, setFood] = useState([]);
   const [nutrients, setNutrients] = useState([]);
   const [summedNutrients, setSummedNutrients] = useState({});
+  const [Names, setNutrientNames] = useState([])
+  
 
   useEffect(() => {
     const summedNutrients = calculateSummedNutrients(nutrients); 
     setSummedNutrients(summedNutrients);
+    
+    const uniqueNames = Array.from(new Set(nutrients.map(nutrient => nutrient.name)));
+    setNutrientNames(uniqueNames);
   }, [nutrients]);
 
-  
+
+
 
   useEffect(() => {
     fetch("http://localhost:8088/Lists")

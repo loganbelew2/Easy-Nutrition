@@ -29,7 +29,7 @@ export const DisplayFood = ({ searchState, myList}) => {
             .then(data => {
                 const identifier = data.fdcId
                 const foodName = data.description;
-                const desiredNutrientIds = ["318", "324", "401", "404", "405", "406", "415", "417", "418", "421", "428", "431", "432", "301", "303", "304", "305", "306", "307", "309", "312", "315", "317"];
+                const desiredNutrientIds = ["318", "324", "401", "404", "405", "406", "415", "417", "418", "421", "428", "431", "432", "301", "303", "304", "305", "306", "307", "309", "312", "313", "315", "317", "413"];
                 const filteredNutrients = data.foodNutrients.filter(nutrient => desiredNutrientIds.includes(nutrient.nutrient.number));
 
                 const nutrients = filteredNutrients.map(nutrient => ({
