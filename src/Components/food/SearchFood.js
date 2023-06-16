@@ -10,7 +10,7 @@ export const SearchFood = ({ setterFunction, listArray, setList}) => {
 
             {
                 listArray.map(
-                    (list) => (<option value={list.id} key={`list--${list.id}`}>{list.name}</option>)
+                    (list) => (<option value={list.id} key={`list--${list.id}`}>{list.name}: {list?.category?.name}</option>)
                 )
             }
         </select>

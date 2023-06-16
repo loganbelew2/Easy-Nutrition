@@ -8,7 +8,7 @@ export const FoodContainer = () => {
     const [selectedList, setSelectedList] = useState(0)
 
     useEffect(() => {
-        fetch(`http://localhost:8088/Lists`)
+        fetch(`http://localhost:8088/lists?_expand=category`)
         .then(response => response.json())
         .then(lists => setLists(lists))
     },[])
