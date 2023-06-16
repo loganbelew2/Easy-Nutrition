@@ -37,10 +37,10 @@ export const TotalNutrients = ({ sum }) => {
         const nutrientDV = nutrientDVObject[name];
 
         // Convert units if necessary
-        const convertedSum = convertUnits(sum, unit, nutrientDV.unit);
+        const convertedSum = nutrientDV ? convertUnits(sum, unit, nutrientDV.unit) : sum;
 
         // Calculate the percentage DV
-        const percentageDV = (convertedSum / nutrientDV.value) * 100;
+        const percentageDV = (convertedSum / nutrientDV?.value) * 100;
 
         return (
           <li key={name}>

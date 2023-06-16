@@ -23,7 +23,7 @@ export const FoodList = () => {
 
 
   useEffect(() => {
-    fetch("http://localhost:8088/Lists")
+    fetch("http://localhost:8088/Lists?_expand=category")
       .then(response => response.json())
       .then(data => setLists(data));
   }, []);
@@ -70,7 +70,7 @@ export const FoodList = () => {
         )}
         {lists.map(list => (
           <option value={list.id} key={`list--${list.id}`}>
-            {list.name}
+            {list.name}: {list.category.name}
           </option>
         ))}
       </select>

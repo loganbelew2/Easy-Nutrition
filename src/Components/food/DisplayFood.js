@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 export const DisplayFood = ({ searchState, myList}) => {
     const [searchResults, setSearchResults] = useState([])
@@ -77,7 +77,7 @@ export const DisplayFood = ({ searchState, myList}) => {
       
               Promise.all(postNutrientsRequests)
                 .then((responses) => {
-                  console.log("Fetch requests completed successfully");
+                  window.alert("food posted! Check out your food list now.")
                 })
                 .catch((error) => {
                   console.error("Error occurred during fetch requests:", error);
