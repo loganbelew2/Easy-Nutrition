@@ -84,12 +84,6 @@ export const FoodList = () => {
         ))}
       </ul>
       <h3>Your Nutrients</h3>
-      <ul>
-        {Object.entries(summedNutrients).map(([name, { sum, unit }]) => (
-          <li key={name}>
-            {name}: {sum} {unit}
-          </li>
-        ))}
-      </ul>
+      <TotalNutrients sum = {summedNutrients}/>
     </>
   )}

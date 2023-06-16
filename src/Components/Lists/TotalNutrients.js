@@ -1,59 +1,57 @@
 import { convertUnits } from "./ConvertUnits";
 
-    export const TotalNutrients = (summedNutrients, values) => {
+export const TotalNutrients = ({ sum }) => {
+  function createNutrientDVObject() {
+    return {
+      "Calcium, Ca": { value: 1300, unit: "mg" },
+      "Manganese, Mn": { value: 2.3, unit: "mg" },
+      "Selenium, Se": { value: 55, unit: "mcg" },
+      "Vitamin C, total ascorbic acid": { value: 90, unit: "mg" },
+      "Thiamin": { value: 1.2, unit: "mg" },
+      "Riboflavin": { value: 1.3, unit: "mg" },
+      "Niacin": { value: 16, unit: "mg" },
+      "Iron, Fe": { value: 18, unit: "mg" },
+      "Vitamin B-6": { value: 1.7, unit: "mg" },
+      "Folate, total": { value: 400, unit: "mcg" },
+      "Folic acid": { value: 400, unit: "mcg" },
+      "Folate, food": { value: 400, unit: "mcg" },
+      "Choline, total": { value: 550, unit: "mg" },
+      "Vitamin B-12": { value: 2.4, unit: "mcg" },
+      "Vitamin A, IU": { value: 5000, unit: "IU" },
+      "Vitamin D (D2 + D3), International Units": { value: 400-800, unit: "IU" },
+      "Magnesium, Mg": { value: 420, unit: "mg" },
+      "Phosphorus, P": { value: 1250, unit: "mg" },
+      "Potassium, K": { value: 4700, unit: "mg" },
+      "Sodium, Na": { value: 2300, unit: "mg" },
+      "Zinc, Zn": { value: 11, unit: "mg" },
+      "Copper, Cu": { value: 0.9, unit: "mg" }
+    };
+  }
 
-        function createNutrientDVObject() {
-            const nutrientDV = {
-              "Calcium, Ca": 1300,
-              "Manganese, Mn": 2.3,
-              "Selenium, Se": 55,
-              "Vitamin C, total ascorbic acid": 90,
-              "Thiamin": 1.2,
-              "Riboflavin": 1.3,
-              "Niacin": 16,
-              "Iron, Fe": 18,
-              "Vitamin B-6": 1.7,
-              "Folate, total": 400,
-              "Folic acid": 400,
-              "Folate, food": 400,
-              "Choline, total": 550,
-              "Vitamin B-12": 2.4,
-              "Vitamin A, IU": 5000,
-              "Vitamin D (D2 + D3), International Units": 400-800,
-              "Magnesium, Mg": 420,
-              "Phosphorus, P": 1250,
-              "Potassium, K": 4700,
-              "Sodium, Na": 2300,
-              "Zinc, Zn": 11,
-              "Copper, Cu": 0.9
-            };
-          
-            return nutrientDV;
-          }
-          
-          // Example usage
-          const nutrientDVObject = createNutrientDVObject();
-          console.log(nutrientDVObject);
-          
-        <ul>
-        {Object.entries(summedNutrients).map(([name, { sum, unit }]) => {
-          const nutrientDV = nutrientDVObject[name]; // Assuming you have the nutrientDVObject
-      
-          // Convert units if necessary
-          const convertedSum = convertUnits(sum, unit, nutrientDV.unit);
-      
-          // Calculate the percentage DV
-          const percentageDV = (convertedSum / nutrientDV.value) * 100;
-      
-          return (
-            <li key={name}>
-              {name}: {sum} {unit} ({percentageDV.toFixed(2)}% DV)
-            </li>
-          );
-        })}
-      </ul>
-      
-      };
+  // Create the nutrientDVObject
+  const nutrientDVObject = createNutrientDVObject();
+
+  return (
+    <ul>
+      {Object.entries(sum).map(([name, { sum, unit }]) => {
+        const nutrientDV = nutrientDVObject[name];
+
+        // Convert units if necessary
+        const convertedSum = convertUnits(sum, unit, nutrientDV.unit);
+
+        // Calculate the percentage DV
+        const percentageDV = (convertedSum / nutrientDV.value) * 100;
+
+        return (
+          <li key={name}>
+            {name}: {sum} {unit} ({percentageDV.toFixed(2)}% DV)
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
+
       
       
 
