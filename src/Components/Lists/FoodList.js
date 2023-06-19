@@ -62,7 +62,7 @@ export const FoodList = () => {
   return (
     <>
       <h1>Your Lists</h1>
-      <select required onChange={(evt) => setSelectedList(evt.target.value)}>
+      <select required onChange={(evt) => setSelectedList(evt.target.value) }>
         {lists.length === 0 ? (
           <option value={0}>Click the create List Link</option>
         ) : (
