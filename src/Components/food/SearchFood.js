@@ -1,4 +1,4 @@
-export const SearchFood = ({ setterFunction, listArray, setList}) => {
+export const SearchFood = ({ searchContent, listArray, setList}) => {
 
     return (<>
         <h3>Which list will you be adding to?</h3>
@@ -17,7 +17,7 @@ export const SearchFood = ({ setterFunction, listArray, setList}) => {
         <h1>Build your List of Food</h1>
         <input required type="text" placeholder="chicken"
             onChange={(change) => {
-                setterFunction(change.target.value)
+                searchContent(change.target.value)
             }}
         />
     </>

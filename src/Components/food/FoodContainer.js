@@ -15,7 +15,7 @@ export const FoodContainer = () => {
 
     return (<>
          <div>Start your nutrition journey today!</div>
-        <SearchFood setterFunction ={ searchInput} listArray = { Lists } setList = {setSelectedList} />
+        <SearchFood searchContent ={ searchInput} listArray = { Lists } setList = {setSelectedList} />
         < DisplayFood searchState = {searchedFood} myList = {selectedList}/>
         </>
     )

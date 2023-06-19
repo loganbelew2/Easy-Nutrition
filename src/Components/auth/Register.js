@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
@@ -7,11 +7,6 @@ export const Register = () => {
         email: "",
         isEmployee: false
     });
-    const [customer, setCustomer] = useState({
-        address: "",
-        phoneNumber: "",
-        userId: 0
-    })
     const [address, setAddress] = useState("")
     const [phone, setPhone] = useState("")
 

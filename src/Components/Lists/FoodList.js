@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import { calculateSummedNutrients } from "./CalculateSum";
 import { TotalNutrients } from "./TotalNutrients";
-
+import { useNavigate } from "react-router-dom";
 export const FoodList = () => {
+  const Navigate = useNavigate()
   const [lists, setLists] = useState([]);
   const [selectedList, setSelectedList] = useState(0);
   const [food, setFood] = useState([]);
   const [nutrients, setNutrients] = useState([]);
   const [summedNutrients, setSummedNutrients] = useState({});
   const [Names, setNutrientNames] = useState([])
-  
+  const [selectedListName, setSelectedListName] = useState("");
+
 
   useEffect(() => {
-    const summedNutrients = calculateSummedNutrients(nutrients); 
+    const summedNutrients = calculateSummedNutrients(nutrients);
     setSummedNutrients(summedNutrients);
-    
+
     const uniqueNames = Array.from(new Set(nutrients.map(nutrient => nutrient.name)));
     setNutrientNames(uniqueNames);
   }, [nutrients]);
@@ -59,10 +61,37 @@ export const FoodList = () => {
       });
   };
 
+  const handleListSelect = (event) => {
+    const value = event.target.value
+    const name = lists.find((list) => list.id === parseInt(value))?.name || "";
+    setSelectedList(value)
+    setSelectedListName(name)
+  }
+
+  const handleListNameChange = () => {
+    fetch(`http://localhost:8088/Lists/${selectedList}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name: selectedListName }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("List name updated successfully:", data);
+        // Perform any additional actions with the response data here
+      })
+      .catch((error) => {
+        console.error("Error updating list name:", error);
+        // Handle any errors that occur during the request
+      });
+  };
+  
+
   return (
     <>
       <h1>Your Lists</h1>
-      <select required onChange={(evt) => setSelectedList(evt.target.value) }>
+      <select required onChange={evt => handleListSelect(evt)}>
         {lists.length === 0 ? (
           <option value={0}>Click the create List Link</option>
         ) : (
@@ -74,6 +103,14 @@ export const FoodList = () => {
           </option>
         ))}
       </select>
+      {selectedListName && <p>Selected List: {selectedListName}</p>}
+      <input
+        type="text"
+        value={selectedListName}
+        onChange={(event) => setSelectedListName(event.target.value)}
+      />
+      <button onClick={handleListNameChange}>Change Name</button>
+
       <h3>Your foods</h3>
       <ul>
         {food.map(item => (
@@ -84,6 +121,7 @@ export const FoodList = () => {
         ))}
       </ul>
       <h3>Your Nutrients</h3>
-      <TotalNutrients sum = {summedNutrients}/>
+      <TotalNutrients sum={summedNutrients} />
     </>
-  )}
+  )
+}

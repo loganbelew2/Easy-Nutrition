@@ -4,6 +4,7 @@ export const DisplayFood = ({ searchState, myList}) => {
     const [searchResults, setSearchResults] = useState([])
     const [selectedFood, setSelectedFood] = useState([])
     const [selectedNutrients, setNutrients] = useState([])
+    
     const localEasyUser = localStorage.getItem("easy_user")
     const EasyUserObject = JSON.parse(localEasyUser)
 
@@ -51,7 +52,7 @@ export const DisplayFood = ({ searchState, myList}) => {
             })
     }
 
-    const postFoodObject = () => {
+    const postFoodAndNutrients = () => {
         if (myList === 0) {
           window.alert("Please select a list");
         } else {
@@ -76,16 +77,10 @@ export const DisplayFood = ({ searchState, myList}) => {
               );
       
               Promise.all(postNutrientsRequests)
-                .then((responses) => {
+                .then(() => {
                   window.alert("food posted! Check out your food list now.")
                 })
-                .catch((error) => {
-                  console.error("Error occurred during fetch requests:", error);
-                });
             })
-            .catch((error) => {
-              console.error("Error occurred while posting food item:", error);
-            });
         }
       };
 
@@ -104,7 +99,7 @@ export const DisplayFood = ({ searchState, myList}) => {
                         </option>
                     ))}
                 </select>
-                <button onClick={postFoodObject}>Add Food</button>
+                <button onClick={postFoodAndNutrients}>Add Food</button>
             </div>
         </>
     );
