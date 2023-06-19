@@ -6,6 +6,7 @@ export const CreateList = () => {
   const [name, setName] = useState("")
   const [selectedCategory, setCategory] = useState(0)
   const [formError, setFormError] = useState(false)
+  
   const navigate = useNavigate()
   const localEasyUser = localStorage.getItem("easy_user")
   const EasyUserObject = JSON.parse(localEasyUser)
@@ -43,12 +44,12 @@ export const CreateList = () => {
 
   return (
     <>
-      <form>
+      <form name="createList">
         <h2>Create Your List</h2>
 
         <fieldset>
           <label htmlFor="name">Name of List</label>
-          <input id="name" value={name} onChange={(evt) => setName(evt.target.value)} required />
+          <input id="name" value={name} onChange={(evt) => setName(evt.target.value)} required type="text"/>
         </fieldset>
 
         <fieldset>

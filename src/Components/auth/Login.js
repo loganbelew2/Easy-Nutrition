@@ -31,7 +31,7 @@ export const Login = () => {
     return (
         <main className="container--login">
             <section>
-                <form className="form--login" onSubmit={handleLogin}>
+                <form name="Login" className="form--login" onSubmit={handleLogin}>
                     <h1> Welcome to Easy Nutrition</h1>
                     <h2>Please sign in</h2>
                     <fieldset>

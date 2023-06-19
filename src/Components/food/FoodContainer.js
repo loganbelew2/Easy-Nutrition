@@ -7,16 +7,20 @@ export const FoodContainer = () => {
     const [Lists, setLists] = useState([])
     const [selectedList, setSelectedList] = useState(0)
 
+    const localEasyUser = localStorage.getItem("easy_user")
+    const EasyUserObject = JSON.parse(localEasyUser)
+    const EasyId = EasyUserObject.id
+
     useEffect(() => {
-        fetch(`http://localhost:8088/lists?_expand=category`)
-        .then(response => response.json())
-        .then(lists => setLists(lists))
-    },[])
+        fetch(`http://localhost:8088/lists?_expand=category&userId=${EasyId}`)
+            .then(response => response.json())
+            .then(lists => setLists(lists))
+    }, [])
 
     return (<>
-         <div>Start your nutrition journey today!</div>
-        <SearchFood searchContent ={ searchInput} listArray = { Lists } setList = {setSelectedList} />
-        < DisplayFood searchState = {searchedFood} myList = {selectedList}/>
-        </>
+        <div>Start your nutrition journey today!</div>
+        <SearchFood searchContent={searchInput} listArray={Lists} setList={setSelectedList} />
+        < DisplayFood searchState={searchedFood} myList={selectedList} />
+    </>
     )
 }

@@ -1,37 +1,35 @@
 import { useEffect, useState } from "react";
 import { calculateSummedNutrients } from "./CalculateSum";
 import { TotalNutrients } from "./TotalNutrients";
-import { useNavigate } from "react-router-dom";
 export const FoodList = () => {
-  const Navigate = useNavigate()
   const [lists, setLists] = useState([]);
   const [selectedList, setSelectedList] = useState(0);
   const [food, setFood] = useState([]);
   const [nutrients, setNutrients] = useState([]);
   const [summedNutrients, setSummedNutrients] = useState({});
-  const [Names, setNutrientNames] = useState([])
   const [selectedListName, setSelectedListName] = useState("");
 
+  const localEasyUser = localStorage.getItem("easy_user")
+  const EasyUserObject = JSON.parse(localEasyUser)
+  const EasyId = EasyUserObject.id
 
   useEffect(() => {
-    const summedNutrients = calculateSummedNutrients(nutrients);
-    setSummedNutrients(summedNutrients);
+    const summedNutrientss = calculateSummedNutrients(nutrients);
+    setSummedNutrients(summedNutrientss);
 
-    const uniqueNames = Array.from(new Set(nutrients.map(nutrient => nutrient.name)));
-    setNutrientNames(uniqueNames);
   }, [nutrients]);
 
 
 
 
   useEffect(() => {
-    fetch("http://localhost:8088/Lists?_expand=category")
+    fetch(`http://localhost:8088/lists?_expand=category&userId=${EasyId}`)
       .then(response => response.json())
       .then(data => setLists(data));
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:8088/foodItems")
+    fetch(`http://localhost:8088/foodItems?userId=${EasyId}`)
       .then(response => response.json())
       .then(data => {
         const foodMatches = data.filter(food => food.listId === parseInt(selectedList));

@@ -52,6 +52,7 @@ export const TotalNutrients = ({ sum }) => {
   );
 };
 
+
       
       
 

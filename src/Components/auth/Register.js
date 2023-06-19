@@ -82,7 +82,7 @@ export const Register = () => {
 
     return (
         <main style={{ textAlign: "center" }}>
-            <form className="form--login" onSubmit={handleRegister}>
+            <form  name="register" className="form--login" onSubmit={handleRegister}>
                 <h1 className="h3 mb-3 font-weight-normal">
                     Please Register for Easy Nutrition
                 </h1>
