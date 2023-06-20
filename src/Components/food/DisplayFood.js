@@ -4,7 +4,8 @@ export const DisplayFood = ({ searchState, myList}) => {
     const [searchResults, setSearchResults] = useState([])
     const [selectedFood, setSelectedFood] = useState([])
     const [selectedNutrients, setNutrients] = useState([])
-    
+    const [isAddButtonDisabled, setAddButtonDisabled] = useState(true)
+
     const localEasyUser = localStorage.getItem("easy_user")
     const EasyUserObject = JSON.parse(localEasyUser)
 
@@ -25,7 +26,8 @@ export const DisplayFood = ({ searchState, myList}) => {
 
 
     const handleSelectedFood = (foodId) => {
-        fetch(`https://api.nal.usda.gov/fdc/v1/food/${foodId}?&api_key=nUayw6tUK0qnDFUriuJsNuj9epCJa1htM7gbShIB`)
+        setAddButtonDisabled(true)
+      fetch(`https://api.nal.usda.gov/fdc/v1/food/${foodId}?&api_key=nUayw6tUK0qnDFUriuJsNuj9epCJa1htM7gbShIB`)
             .then(response => response.json())
             .then(data => {
                 const identifier = data.fdcId
@@ -47,42 +49,50 @@ export const DisplayFood = ({ searchState, myList}) => {
                     listId: parseInt(myList)
                 });
 
-                setNutrients(nutrients)
-               
-            })
+                setNutrients(nutrients)  
+              }).then(() => setTimeout(() => {
+                setAddButtonDisabled(false)
+              },2000)
+              )
     }
 
     const postFoodAndNutrients = () => {
-        if (myList === 0) {
-          window.alert("Please select a list");
-        } else {
-          fetch("http://localhost:8088/foodItems", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(selectedFood),
+      if (myList === 0) {
+        window.alert("Please select a list");
+      } else {
+        fetch("http://localhost:8088/foodItems", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(selectedFood),
+        })
+          .then((response) => response.json())
+          .then(() => {
+            const postNutrientsRequests = selectedNutrients.map((nutrient) =>
+              fetch("http://localhost:8088/nutrients", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(nutrient),
+              })
+            );
+    
+            Promise.all(postNutrientsRequests)
+              .then(() => {
+                window.alert("Food posted! Check out your food list now.");
+              })
+              .catch((error) => {
+                console.log("Error posting nutrients:", error);
+              });
           })
-            .then((response) => response.json())
-            .then(() => {
-              const postNutrientsRequests = selectedNutrients.map(
-                (nutrient) =>
-                  fetch("http://localhost:8088/nutrients", {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(nutrient),
-                  })
-              );
-      
-              Promise.all(postNutrientsRequests)
-                .then(() => {
-                  window.alert("food posted! Check out your food list now.")
-                })
-            })
-        }
-      };
+          .catch((error) => {
+            console.log("Error posting food item:", error);
+          });
+      }
+    };
+    
 
     return (
         <>
@@ -99,7 +109,7 @@ export const DisplayFood = ({ searchState, myList}) => {
                         </option>
                     ))}
                 </select>
-                <button onClick={postFoodAndNutrients}>Add Food</button>
+                <button onClick={postFoodAndNutrients} disabled={isAddButtonDisabled}>Add Food</button>
             </div>
         </>
     );

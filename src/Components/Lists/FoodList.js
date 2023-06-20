@@ -58,6 +58,8 @@ export const FoodList = () => {
         console.log("Error deleting food item:", error);
       });
   };
+  
+
 
   const handleListSelect = (event) => {
     const value = event.target.value
