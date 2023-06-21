@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 export const DisplayFood = ({ searchState, myList }) => {
   const [searchResults, setSearchResults] = useState([])
@@ -9,7 +9,7 @@ export const DisplayFood = ({ searchState, myList }) => {
   const localEasyUser = localStorage.getItem("easy_user")
   const EasyUserObject = JSON.parse(localEasyUser)
 
- 
+
 
   const handleSearchButton = () => {
     fetch(`https://api.nal.usda.gov/fdc/v1/foods/search?query="${searchState}"&api_key=nUayw6tUK0qnDFUriuJsNuj9epCJa1htM7gbShIB`)
@@ -26,12 +26,12 @@ export const DisplayFood = ({ searchState, myList }) => {
   }
 
 
-  const handleSelectedFood = (foodId) => {
+  const handleSelectedFood = (food) => {
     setSelectedFood([]);
     setNutrients([]);
     setAddButtonDisabled(true)
 
-    fetch(`https://api.nal.usda.gov/fdc/v1/food/${foodId}?&api_key=nUayw6tUK0qnDFUriuJsNuj9epCJa1htM7gbShIB`)
+    fetch(`https://api.nal.usda.gov/fdc/v1/food/${food}?&api_key=nUayw6tUK0qnDFUriuJsNuj9epCJa1htM7gbShIB`)
       .then(response => response.json())
       .then(data => {
         const identifier = data.fdcId
@@ -40,61 +40,76 @@ export const DisplayFood = ({ searchState, myList }) => {
         const filteredNutrients = data.foodNutrients.filter(nutrient => desiredNutrientIds.includes(nutrient.nutrient.number));
 
         const nutrients = filteredNutrients.map(nutrient => ({
-          marker: identifier,
+          id: nutrient.id,
           name: nutrient?.nutrient?.name,
           amount: nutrient.amount,
-          unit: nutrient?.nutrient?.unitName
-        }));
-
+          unit: nutrient?.nutrient?.unitName,
+          foodId: parseInt(food)
+        }))
         setSelectedFood({
+          id: identifier,
+          quantity: 1,
           userId: EasyUserObject.id,
           food: foodName,
-          nutrientId: identifier,
           listId: parseInt(myList)
         });
-
         setNutrients(nutrients)
-      }).then(() => setTimeout(() => {
-        setAddButtonDisabled(false)
-      }, 2000)
+      }).then(() => setAddButtonDisabled(false)
       )
   }
 
   const postFoodAndNutrients = () => {
-    if (myList === 0) {
-      window.alert("Please select a list");
-    } else {
-      fetch("http://localhost:8088/foodItems", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(selectedFood),
-      })
-        .then((response) => response.json())
-        .then(() => {
-          const postNutrientsRequests = selectedNutrients.map((nutrient) =>
-            fetch("http://localhost:8088/nutrients", {
+  
+    fetch(`http://localhost:8088/foodItems`)
+      .then((r) => r.json())
+      .then((d) => {
+        const duplicateFood = d.find((i) => i.id === selectedFood.id);
+        const incrementQuantity = duplicateFood ? duplicateFood.quantity + 1 : 1;
+  
+        if (duplicateFood) {
+          fetch(`http://localhost:8088/foodItems/${duplicateFood.id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ quantity: incrementQuantity }),
+          });
+        } else {
+          if (myList === 0) {
+            window.alert("Please select a list");
+          } else {
+            fetch("http://localhost:8088/foodItems", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify(nutrient),
+              body: JSON.stringify(selectedFood),
             })
-          );
-
-          return Promise.all(postNutrientsRequests);
-        })
-        .then((responses) => {
-          console.log(responses)
-
-          window.alert("Food posted! Check out your food list now.");
-        })
-        .catch((error) => {
-          console.log("Error posting food and nutrients:", error);
-        });
-    }
+              .then((response) => response.json())
+              .then(() => {
+                const postNutrientsRequests = selectedNutrients.map((nutrient) =>
+                  fetch("http://localhost:8088/nutrients", {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(nutrient),
+                  })
+                );
+  
+                return Promise.all(postNutrientsRequests);
+              })
+              .then(() => {
+                window.alert("Food posted! Check out your food list now.");
+              })
+              .catch((error) => {
+                console.log("Error posting food and nutrients:", error);
+              });
+          }
+        }
+      });
   };
+  
 
 
 
@@ -109,7 +124,7 @@ export const DisplayFood = ({ searchState, myList }) => {
           )}
           {searchResults.map((result) => (
             <option key={`food--${result.fdcId}`} value={result.fdcId}>
-              {result.description}
+              {result.description}: {result?.foodMeasures[0]?.gramWeight} grams
             </option>
           ))}
         </select>
@@ -121,3 +136,4 @@ export const DisplayFood = ({ searchState, myList }) => {
 
 
 }
+

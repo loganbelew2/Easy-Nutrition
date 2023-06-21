@@ -16,11 +16,7 @@ export const FoodList = () => {
   useEffect(() => {
     const summedNutrientss = calculateSummedNutrients(nutrients);
     setSummedNutrients(summedNutrientss);
-
   }, [nutrients]);
-
-
-
 
   useEffect(() => {
     fetch(`http://localhost:8088/lists?_expand=category&userId=${EasyId}`)
@@ -41,18 +37,26 @@ export const FoodList = () => {
     fetch("http://localhost:8088/nutrients")
       .then(response => response.json())
       .then(data => {
-        const nutrientMatches = data.filter(nutrient => food.map(item => item.nutrientId).includes(nutrient.marker));
+        const nutrientMatches = data.filter(nutrient => food.map(item => item.id).includes(nutrient.foodId));
         setNutrients(nutrientMatches);
       });
   }, [food]);
 
-  const handleDeleteFood = (foodId, nutrientId) => {
+
+  const handleDeleteFoodAndNutrients = (foodId) => {
     fetch(`http://localhost:8088/foodItems/${foodId}`, {
       method: "DELETE"
     })
+    .then(() => {
+     const deletedNutrients = nutrients.filter((nutrient) => nutrient.foodId === foodId)
+     deletedNutrients.map( nutrient => {
+      fetch(`http://localhost:8088/nutrients/${nutrient.id}`, {
+        method:"DELETE"
+      })})
+    })
       .then(() => {
         setFood(prevFood => prevFood.filter(item => item.id !== foodId));
-        setNutrients(prevNutrients => prevNutrients.filter(nutrient => nutrient.marker !== nutrientId));
+        setNutrients(prevNutrients => prevNutrients.filter(nutrient => nutrient.foodId !== foodId));
       })
       .catch(error => {
         console.log("Error deleting food item:", error);
@@ -68,6 +72,7 @@ export const FoodList = () => {
     setSelectedListName(name)
   }
 
+  
   const handleListNameChange = () => {
     fetch(`http://localhost:8088/Lists/${selectedList}`, {
       method: "PATCH",
@@ -116,7 +121,7 @@ export const FoodList = () => {
         {food.map(item => (
           <li key={`food--${item.id}`}>
             {item.food}
-            <button onClick={() => handleDeleteFood(item.id, item.nutrientId)}>Delete</button>
+            <button onClick={() => handleDeleteFoodAndNutrients(item.id)}>Delete</button>
           </li>
         ))}
       </ul>
