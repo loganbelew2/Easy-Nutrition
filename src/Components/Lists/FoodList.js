@@ -13,6 +13,8 @@ export const FoodList = () => {
   const EasyUserObject = JSON.parse(localEasyUser)
   const EasyId = EasyUserObject.id
 
+ 
+
   useEffect(() => {
     const summedNutrientss = calculateSummedNutrients(nutrients);
     setSummedNutrients(summedNutrientss);
@@ -35,12 +37,21 @@ export const FoodList = () => {
 
   useEffect(() => {
     fetch("http://localhost:8088/nutrients")
-      .then(response => response.json())
-      .then(data => {
+    .then(response => response.json())
+    .then(data => {
         const nutrientMatches = data.filter(nutrient => food.map(item => item.id).includes(nutrient.foodId));
-        setNutrients(nutrientMatches);
+  
+        const updatedNutrientMatches = nutrientMatches.map(nutrient => {
+          const foodItem = food.find(item => item.id === nutrient.foodId);
+          const updatedAmount = nutrient.amount * foodItem.quantity;
+          return { ...nutrient, amount: updatedAmount };
+        });
+  
+        setNutrients(updatedNutrientMatches);
       });
   }, [food]);
+  
+  
 
 
   const handleDeleteFoodAndNutrients = (foodId) => {
@@ -120,7 +131,7 @@ export const FoodList = () => {
       <ul>
         {food.map(item => (
           <li key={`food--${item.id}`}>
-            {item.food}
+            {item.food} <br/> quantity {item.quantity} 
             <button onClick={() => handleDeleteFoodAndNutrients(item.id)}>Delete</button>
           </li>
         ))}
