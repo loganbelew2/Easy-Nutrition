@@ -52,10 +52,10 @@ export const UpdateUser = () => {
             <input
               onChange={(event) => handleCheckboxChange(event, customer.id)}
               checked={check[customer.id] || false}
-              id={`loyal-${customer.id}`}
+              id="loyal"
               type="checkbox"
             />{" "}
-            <label htmlFor={`loyal-${customer.id}`}>Loyalty Member?</label>
+            <label htmlFor="loyal">Loyalty Member?</label>
             <button onClick={() => handleSave(customer.id)}>Save</button>
           </div>
         </li>

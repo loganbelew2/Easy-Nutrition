@@ -121,7 +121,7 @@ export const Register = () => {
                     </input>
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="address"> phone number</label>
+                    <label htmlFor="phoneNumber"> phone number</label>
                     <input
                         onChange={(evt) => setPhone(evt.target.value)}
                         type="text"
@@ -141,7 +141,7 @@ export const Register = () => {
                         type="checkbox"
                         id="isEmployee"
                     />
-                    <label htmlFor="email"> I am an employee </label>
+                    <label htmlFor="isEmployee"> I am an employee </label>
                 </fieldset>
                 <fieldset>
                     <button type="submit"> Register </button>
