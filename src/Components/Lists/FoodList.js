@@ -77,7 +77,7 @@ export const FoodList = () => {
 
 
   const handleListSelect = (event) => {
-    const value = event.target.value
+    const value = parseInt(event.target.value)
     const name = lists.find((list) => list.id === parseInt(value))?.name || "";
     setSelectedList(value)
     setSelectedListName(name)
@@ -97,6 +97,13 @@ export const FoodList = () => {
   const handleDeleteList = () => {
     fetch(`http://localhost:8088/Lists/${selectedList}`, {
       method: "DELETE",
+  })
+  .then(() => {
+    setLists(prevLists => prevLists.filter( list => list.id !== selectedList))
+    setFood(prevFood => prevFood.filter(food => food.listId !== selectedList))
+    setNutrients(prevNutrients => prevNutrients.filter(nutrient => nutrient.listId !== selectedList))
+    setSelectedList(0)
+    setSelectedListName("")
   })
   }
   return (
