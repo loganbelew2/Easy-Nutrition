@@ -32,7 +32,7 @@ export const TotalNutrients = ({ sum }) => {
   const nutrientDVObject = createNutrientDVObject();
 
   return (
-    <ul>
+    <ul className="list-group">
       {Object.entries(sum).map(([name, { sum, unit }]) => {
         const nutrientDV = nutrientDVObject[name];
 
@@ -43,7 +43,7 @@ export const TotalNutrients = ({ sum }) => {
         const percentageDV = (convertedSum / nutrientDV?.value) * 100;
 
         return (
-          <li key={name}>
+          <li className="list-group-item" key={name}>
             {name}: {sum.toFixed(2)} {unit} ({percentageDV.toFixed(2)}% DV)
           </li>
         );

@@ -43,9 +43,9 @@ export const UpdateUser = () => {
   };
 
   return (
-    <ul>
+    <ul className="list-group">
       {customers.map((customer) => (
-        <li key={`customer--${customer.id}`}>
+        <li className="list-group-item" key={`customer--${customer.id}`}>
           <div>{customer?.user?.name}</div>
           <div>{customer?.user?.email}</div>
           <div>

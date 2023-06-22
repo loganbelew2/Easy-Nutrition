@@ -133,9 +133,9 @@ export const FoodList = () => {
       <button onClick={handleListNameChange}>Change Name</button>
 
       <h3>Your foods</h3>
-      <ul>
+      <ul className="list-group">
         {food.map(item => (
-          <li key={`food--${item.id}`}>
+          <li className="list-group-item" key={`food--${item.id}`}>
             {item.food} <br/> quantity {item.quantity} 
             <button onClick={() => handleDeleteFoodAndNutrients(item.id)}>Delete</button>
           </li>
@@ -146,3 +146,5 @@ export const FoodList = () => {
     </>
   )
 }
+
+
