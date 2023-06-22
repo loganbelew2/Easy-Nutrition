@@ -59,25 +59,27 @@ export const DisplayFood = ({ searchState, myList }) => {
   }
 
   const postFoodAndNutrients = () => {
-  
+
     fetch(`http://localhost:8088/foodItems`)
       .then((r) => r.json())
       .then((d) => {
         const duplicateFood = d.find((i) => i.id === selectedFood.id);
         const incrementQuantity = duplicateFood ? duplicateFood.quantity + 1 : 1;
-  
-        if (duplicateFood) {
-          fetch(`http://localhost:8088/foodItems/${duplicateFood.id}`, {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ quantity: incrementQuantity }),
-          });
-        } else {
-          if (myList === 0) {
-            window.alert("Please select a list");
-          } else {
+        if (myList == 0) {
+          window.alert("Please select a list");
+        }
+
+        else {
+          if (duplicateFood) {
+            fetch(`http://localhost:8088/foodItems/${duplicateFood.id}`, {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ quantity: incrementQuantity }),
+            }).then(() =>  window.alert("Food posted! Check out your food list now."))
+          }
+          else {
             fetch("http://localhost:8088/foodItems", {
               method: "POST",
               headers: {
@@ -96,7 +98,7 @@ export const DisplayFood = ({ searchState, myList }) => {
                     body: JSON.stringify(nutrient),
                   })
                 );
-  
+
                 return Promise.all(postNutrientsRequests);
               })
               .then(() => {
@@ -105,11 +107,12 @@ export const DisplayFood = ({ searchState, myList }) => {
               .catch((error) => {
                 console.log("Error posting food and nutrients:", error);
               });
+
           }
         }
       });
   };
-  
+
 
 
 
@@ -124,7 +127,7 @@ export const DisplayFood = ({ searchState, myList }) => {
           )}
           {searchResults.map((result) => (
             <option key={`food--${result.fdcId}`} value={result.fdcId}>
-              {result.description}: {result?.foodMeasures[0]?.gramWeight} grams
+              {result.description}: {result?.foodMeasures[0]?.gramWeight ? `${result.foodMeasures[0].gramWeight} grams` : null}
             </option>
           ))}
         </select>
