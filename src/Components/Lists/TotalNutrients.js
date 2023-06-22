@@ -44,7 +44,7 @@ export const TotalNutrients = ({ sum }) => {
 
         return (
           <li key={name}>
-            {name}: {sum} {unit} ({percentageDV.toFixed(2)}% DV)
+            {name}: {sum.toFixed(2)} {unit} ({percentageDV.toFixed(2)}% DV)
           </li>
         );
       })}

@@ -44,7 +44,8 @@ export const DisplayFood = ({ searchState, myList }) => {
           name: nutrient?.nutrient?.name,
           amount: nutrient.amount,
           unit: nutrient?.nutrient?.unitName,
-          foodId: parseInt(food)
+          foodId: parseInt(food),
+          listId: parseInt(myList)
         }))
         setSelectedFood({
           id: identifier,

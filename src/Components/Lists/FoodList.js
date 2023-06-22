@@ -92,18 +92,13 @@ export const FoodList = () => {
       },
       body: JSON.stringify({ name: selectedListName }),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("List name updated successfully:", data);
-        // Perform any additional actions with the response data here
-      })
-      .catch((error) => {
-        console.error("Error updating list name:", error);
-        // Handle any errors that occur during the request
-      });
   };
   
-
+  const handleDeleteList = () => {
+    fetch(`http://localhost:8088/Lists/${selectedList}`, {
+      method: "DELETE",
+  })
+  }
   return (
     <>
       <h1>Your Lists</h1>
@@ -119,7 +114,10 @@ export const FoodList = () => {
           </option>
         ))}
       </select>
+      <div>
       {selectedListName && <p>Selected List: {selectedListName}</p>}
+      <button onClick={handleDeleteList}>delete list</button>
+      </div>
       <input
         type="text"
         value={selectedListName}

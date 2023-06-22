@@ -28,7 +28,7 @@ export const CreateList = () => {
 
     const list = {
       name: name,
-      categoryId: selectedCategory,
+      categoryId: parseInt(selectedCategory),
       userId: EasyUserObject.id
     }
 
