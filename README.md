@@ -1,4 +1,7 @@
 # Easy Nutrition
+ 
+## Purpose and Motivation
+The purpose of this application is to provide users with easy to read nutrient information for the foods they consume every day and also ensure they are not severely deficient in a nutrient such as iron which many people are deficient in; it's estimated over 2 million people have a nutrient deficiency worldWide. This is a client side capstone project for nashville software school and was a great way for me to improve my knowledge of react, api's and app development.
 
 ## Description
 Easy Nutrition is a React application that empowers users to manage their nutrition by creating custom lists of food items. The app provides features for user registration, login, and the ability to search and add food items using the USDA FoodData Central API. Users can view their custom lists along with the corresponding food items and obtain the total amount of various vitamins and minerals for each list.
