@@ -1,4 +1,4 @@
-import { Outlet, Route, Router, Routes } from "react-router-dom"
+import { Outlet, Route, Routes } from "react-router-dom"
 import { FoodContainer } from "../food/FoodContainer"
 import { CreateList } from "../Lists/createList"
 import { FoodList } from "../Lists/FoodList"

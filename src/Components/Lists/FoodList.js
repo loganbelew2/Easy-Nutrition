@@ -24,7 +24,7 @@ export const FoodList = () => {
   useEffect(() => {
     fetch(`http://localhost:8088/lists?_expand=category&userId=${EasyId}`)
       .then(response => response.json())
-      .then(data => setLists(data));
+      .then(data => setLists(data)); //eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export const FoodList = () => {
       .then(data => {
         const foodMatches = data.filter(food => food.listId === parseInt(selectedList));
         setFood(foodMatches);
-      });
+      }); //eslint-disable-next-line
   }, [selectedList]);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export const FoodList = () => {
     })
     .then(() => {
      const deletedNutrients = nutrients.filter((nutrient) => nutrient.foodId === foodId)
-     deletedNutrients.map( nutrient => {
+     deletedNutrients.forEach( nutrient => {
       fetch(`http://localhost:8088/nutrients/${nutrient.id}`, {
         method:"DELETE"
       })})

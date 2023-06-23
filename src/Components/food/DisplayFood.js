@@ -65,7 +65,7 @@ export const DisplayFood = ({ searchState, myList }) => {
       .then((r) => r.json())
       .then((d) => {
         const duplicateFood = d.find((i) => i.id === selectedFood.id);
-        const incrementQuantity = duplicateFood ? duplicateFood.quantity + 1 : 1;
+        const incrementQuantity = duplicateFood ? duplicateFood.quantity + 1 : 1; //eslint-disable-next-line
         if (myList == 0) {
           window.alert("Please select a list");
         }

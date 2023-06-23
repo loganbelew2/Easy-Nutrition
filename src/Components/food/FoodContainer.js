@@ -14,7 +14,7 @@ export const FoodContainer = () => {
     useEffect(() => {
         fetch(`http://localhost:8088/lists?_expand=category&userId=${EasyId}`)
             .then(response => response.json())
-            .then(lists => setLists(lists))
+            .then(lists => setLists(lists)) //eslint-disable-next-line
     }, [])
 
     return (<>

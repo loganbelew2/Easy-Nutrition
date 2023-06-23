@@ -9,7 +9,7 @@ export const SelectedList = () => {
         fetch(`http://localhost:8088/lists?_id=${listId}`)
           .then((response) => response.json())
           .then((data) => setLists(data));
-          console.log(Lists)
+          console.log(Lists) //eslint-disable-next-line
       }, [listId]);
 
       return (
