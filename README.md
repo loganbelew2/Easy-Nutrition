@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Easy Nutrition
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+Easy Nutrition is a React application that empowers users to manage their nutrition by creating custom lists of food items. The app provides features for user registration, login, and the ability to search and add food items using the USDA FoodData Central API. Users can view their custom lists along with the corresponding food items and obtain the total amount of various vitamins and minerals for each list.
 
-## Available Scripts
+## Features
+- **User Registration and Login**: Users can create an account or log in to access their personalized nutrition lists.
+- **Custom List Creation**: Users can create custom lists to organize their food items.
+- **Food Item Search**: The app integrates with the USDA FoodData Central API to allow users to search for specific food items.
+- **Add Food Items**: Users can add food items from the search results to their custom lists.
+- **View Lists and Food Items**: Users can view their custom lists and the corresponding food items.
+- **Nutrition Information**: The app calculates and displays the total amount of various vitamins and minerals for each list and the percentage of the recommended daily value, providing users with valuable nutrition information.
 
-In the project directory, you can run:
+## Installation
+To run Easy Nutrition locally, follow these steps:
 
-### `npm start`
+1. Clone the Easy API repository for the JSON server: `git clone https://github.com/loganbelew2/easy-api.git`
+2. Navigate to the Easy API directory: `cd easy-api`
+3. Start the JSON server for the database on port 8088: `json-server -p 8088 database.json`
+4. Clone the Easy Nutrition repository for the React application: `git clone https://github.com/loganbelew2/easy-nutrition.git`
+5. Navigate to the Easy Nutrition directory: `cd easy-nutrition`
+6. Install the dependencies: `npm install`
+7. Start the React application: `npm start`
+8. Open your web browser and visit `http://localhost:3000` to access the application.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Make sure both the Easy API JSON server and the Easy Nutrition React application are running simultaneously to ensure proper data retrieval and functionality.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies Used
+- React: Front-end framework for building user interfaces.
+- React Router: Library for handling client-side routing in React applications.
+- USDA FoodData Central API: External API for retrieving nutrition information for food items.
+-  Bootstrap & CSS: Styling the application.
 
-### `npm test`
+## Contributing
+Contributions to Easy Nutrition are welcome! To contribute, please follow these guidelines:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Implement your changes and ensure the code adheres to the project's coding standards.
+4. Write tests for your code, if applicable.
+5. Submit a pull request with a detailed description of your changes.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

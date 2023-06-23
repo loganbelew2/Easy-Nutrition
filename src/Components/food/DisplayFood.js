@@ -119,9 +119,9 @@ export const DisplayFood = ({ searchState, myList }) => {
 
   return (
     <>
-      <button onClick={handleSearchButton}>Search</button>
+      <button className="button" onClick={handleSearchButton}>Search</button>
       <div>
-        <select required onChange={(e) => e.target.value !== '0' ? handleSelectedFood(e.target.value) : null}>
+        <select className="select" required onChange={(e) => e.target.value !== '0' ? handleSelectedFood(e.target.value) : null}>
           <option value="0">Please select a food</option>
           {searchResults.length === 0 && (
             <option disabled>No results found. Please refine your search.</option>
@@ -132,7 +132,7 @@ export const DisplayFood = ({ searchState, myList }) => {
             </option>
           ))}
         </select>
-        <button onClick={postFoodAndNutrients} disabled={isAddButtonDisabled}>Add Food</button>
+        <button  className="button" onClick={postFoodAndNutrients} disabled={isAddButtonDisabled}>Add Food</button>
       </div>
     </>
   );

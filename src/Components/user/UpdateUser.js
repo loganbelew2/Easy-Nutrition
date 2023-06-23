@@ -1,6 +1,5 @@
-
 import { useEffect, useState } from "react";
-
+import "./user.css"
 export const UpdateUser = () => {
   const [customers, setCustomers] = useState([]);
   const [check, setCheck] = useState({});
@@ -50,12 +49,13 @@ export const UpdateUser = () => {
           <div>{customer?.user?.email}</div>
           <div>
             <input
+              id="employee-checkbox"
+              className="checkbox"
               onChange={(event) => handleCheckboxChange(event, customer.id)}
               checked={check[customer.id] || false}
-              id="loyal"
               type="checkbox"
             />{" "}
-            <label htmlFor="loyal">Loyalty Member?</label>
+            <label htmlFor="employee-checkbox" >Loyalty Member?</label>
             <button onClick={() => handleSave(customer.id)}>Save</button>
           </div>
         </li>

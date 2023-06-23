@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom"
-
+import "./Login.css"
 
 export const Login = () => {
     const [email, set] = useState("")
@@ -34,7 +34,7 @@ export const Login = () => {
                 <form name="Login" className="form--login" onSubmit={handleLogin}>
                     <h1> Welcome to Easy Nutrition</h1>
                     <h2>Please sign in</h2>
-                    <fieldset>
+                    <fieldset className="login-fieldset">
                         <label htmlFor="inputEmail"> Email address </label>
                         <input type="email"
                             value={email}
@@ -44,7 +44,7 @@ export const Login = () => {
                             id="inputEmail"
                             required autoFocus />
                     </fieldset>
-                    <fieldset>
+                    <fieldset >
                         <button type="submit">
                             Sign in
                         </button>

@@ -1,0 +1,16 @@
+select {
+    background-color: white;
+
+}
+input {
+    background-color: white;
+}
+
+.delete-button {
+    font-weight: 600;
+}
+
+p {
+    display: inline;
+    font-weight: 500;
+}

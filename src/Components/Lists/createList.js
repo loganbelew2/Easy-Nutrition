@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-
+import "./list.css"
 export const CreateList = () => {
   const [categories, setCategories] = useState([])
   const [name, setName] = useState("")
@@ -48,8 +48,8 @@ export const CreateList = () => {
         <h2>Create Your List</h2>
 
         <fieldset>
-          <label htmlFor="name">Name of List</label>
-          <input id="name" value={name} onChange={(evt) => setName(evt.target.value)} required type="text"/>
+          <label htmlFor="names">Name of List</label>
+          <input id="names" value={name} onChange={(evt) => setName(evt.target.value)} required type="text"/>
         </fieldset>
 
         <fieldset>

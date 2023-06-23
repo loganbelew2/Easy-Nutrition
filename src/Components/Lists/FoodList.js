@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { calculateSummedNutrients } from "./CalculateSum";
 import { TotalNutrients } from "./TotalNutrients";
+import "./list.css"
 export const FoodList = () => {
   const [lists, setLists] = useState([]);
   const [selectedList, setSelectedList] = useState(0);
@@ -126,6 +127,7 @@ export const FoodList = () => {
       <button onClick={handleDeleteList}>delete list</button>
       </div>
       <input
+        id="list-name"
         type="text"
         value={selectedListName}
         onChange={(event) => setSelectedListName(event.target.value)}
@@ -137,7 +139,7 @@ export const FoodList = () => {
         {food.map(item => (
           <li className="list-group-item" key={`food--${item.id}`}>
             {item.food} <br/> quantity {item.quantity} 
-            <button onClick={() => handleDeleteFoodAndNutrients(item.id)}>Delete</button>
+            <button className="delete-button" onClick={() => handleDeleteFoodAndNutrients(item.id)}>Delete</button>
           </li>
         ))}
       </ul>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { SearchFood } from "./SearchFood"
 import { DisplayFood } from "./DisplayFood"
-
+import "./food.css"
 export const FoodContainer = () => {
     const [searchedFood, searchInput] = useState("")
     const [Lists, setLists] = useState([])
@@ -19,8 +19,10 @@ export const FoodContainer = () => {
 
     return (<>
         <div>Start your nutrition journey today!</div>
+        <section>
         <SearchFood searchContent={searchInput} listArray={Lists} setList={setSelectedList} />
         < DisplayFood searchState={searchedFood} myList={selectedList} />
+        </section>
     </>
     )
 }

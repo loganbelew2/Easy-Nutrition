@@ -86,7 +86,7 @@ export const Register = () => {
                 <h1 className="h3 mb-3 font-weight-normal">
                     Please Register for Easy Nutrition
                 </h1>
-                <fieldset>
+                <fieldset className="login-fieldset">
                     <label htmlFor="name"> Full Name </label>
                     <input
                         onChange={updateUser}
@@ -98,7 +98,7 @@ export const Register = () => {
                         autoFocus
                     />
                 </fieldset>
-                <fieldset>
+                <fieldset className="login-fieldset">
                     <label htmlFor="email"> Email address </label>
                     <input
                         onChange={updateUser}
@@ -109,7 +109,7 @@ export const Register = () => {
                         required
                     />
                 </fieldset>
-                <fieldset>
+                <fieldset className="login-fieldset">
                     <label htmlFor="address"> Address</label>
                     <input
                         onChange={(evt) => setAddress(evt.target.value)}
@@ -120,7 +120,7 @@ export const Register = () => {
                         required>
                     </input>
                 </fieldset>
-                <fieldset>
+                <fieldset className="login-fieldset">
                     <label htmlFor="phoneNumber"> phone number</label>
                     <input
                         onChange={(evt) => setPhone(evt.target.value)}
