@@ -37,6 +37,7 @@ export const Login = () => {
                     <fieldset className="login-fieldset">
                         <label htmlFor="inputEmail"> Email address </label>
                         <input type="email"
+                            autoComplete="email"
                             value={email}
                             onChange={evt => set(evt.target.value)}
                             className="form-control"

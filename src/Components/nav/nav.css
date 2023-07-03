@@ -1,0 +1,39 @@
+.navbar__link {
+    color: black;
+}
+
+.navbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .dropdown__toggle {
+    background: none;
+    border: 3px solid white;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+  
+  .dropdown__menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    padding: 0;
+    list-style: none;
+    z-index: 1;
+  }
+  
+  .dropdown__menu li {
+    padding: 8px 6px;
+    border: 2px solid white;
+  }
+  
+  .dropdown:hover .dropdown__menu {
+    display: block;
+  }
+  

@@ -17,7 +17,7 @@ export const SearchFood = ({ searchContent, listArray, setList}) => {
         </select>
         </div>
         <h1>Build your List of Food</h1>
-        <input  id="search-input"required type="text" placeholder="chicken" className="input"
+        <input  id="search-input"required type="text" placeholder="chicken" className="input" autoComplete="off"
             onChange={(change) => {
                 searchContent(change.target.value)
             }}
