@@ -15,8 +15,8 @@ export const CustomerView = () => {
                       <Outlet />   
                   </>
               }>
-                <Route path="searchFood" element={< FoodContainer/>} />
                 <Route path="createList" element={<CreateList/>} />
+                <Route path="searchFood" element={< FoodContainer/>} />
                 <Route path="foodLists" element={<FoodList />} />
                 <Route path="selectedList/:{listId}" element={<SelectedList/>} />
 

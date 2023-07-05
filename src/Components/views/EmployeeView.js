@@ -17,8 +17,8 @@ export const EmployeeView = () => {
                       <Outlet />   
                   </>
               }>
-                <Route path="searchFood" element={< FoodContainer/>} />
                 <Route path="createList" element={<CreateList/>} />
+                <Route path="searchFood" element={< FoodContainer/>} />
                 <Route path="foodLists" element={<FoodList />} />
                 <Route path="updateUser" element={<UpdateUser />} />
                 <Route path="selectedList/:{listId}" element={<SelectedList/>} />
