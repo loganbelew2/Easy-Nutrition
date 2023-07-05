@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Easy-Nutrition/static/css/main.e8c842d3.css",
+    "main.js": "/Easy-Nutrition/static/js/main.3189ed28.js",
+    "index.html": "/Easy-Nutrition/index.html",
+    "main.e8c842d3.css.map": "/Easy-Nutrition/static/css/main.e8c842d3.css.map",
+    "main.3189ed28.js.map": "/Easy-Nutrition/static/js/main.3189ed28.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e8c842d3.css",
+    "static/js/main.3189ed28.js"
+  ]
+}
