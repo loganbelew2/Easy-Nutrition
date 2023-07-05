@@ -41,8 +41,11 @@ jobs:
       
     - name: Deploy
       run: |
-        git config --global user.name "CI/Cd Bot"
+        git config --global user.name "CI/CD Bot"
         git config --global user.email "ci-cd@example.com"
-        git remote set-url origin https://github.com/${{ github.repository }}
+        git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
         npm run deploy
+      env:
+        CI: true
+
       
