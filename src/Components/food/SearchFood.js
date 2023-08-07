@@ -1,28 +1,32 @@
-export const SearchFood = ({ searchContent, listArray, setList}) => {
+export const SearchFood = ({ searchContent, listArray, setList }) => {
 
-    return ( <>
+    return (<>
         <div className="select-list">
-        <h3>Which list will you be adding to?</h3>
-        <select className="select" required onChange={(evt) => setList(evt.target.value)}>
-            {
-                listArray.length === 0 ? (<option value={0}> click the create List Link</option>) :
-                    (<option value={0}>please select a list</option>)
-            }
+            <h3 className="searchFood--header">Build your List of Food</h3>
+            <div className="selectList">
 
-            {
-                listArray.map(
-                    (list) => (<option value={list.id} key={`list--${list.id}`}>{list.name}: {list?.category?.name}</option>)
-                )
-            }
-        </select>
+                <h5>Which list will you be adding to?</h5>
+                <select className="select" required onChange={(evt) => setList(evt.target.value)}>
+                    {
+                        listArray.length === 0 ? (<option value={0}> click the create List Link</option>) :
+                            (<option value={0}>please select a list</option>)
+                    }
+
+                    {
+                        listArray.map(
+                            (list) => (<option value={list.id} key={`list--${list.id}`}>{list.name}: {list?.category?.name}</option>)
+                        )
+                    }
+                </select>
+            </div>
+
+            <input id="search-input" required type="text" placeholder="chicken" className="input" autoComplete="off"
+                onChange={(change) => {
+                    searchContent(change.target.value)
+                }}
+            />
         </div>
-        <h1>Build your List of Food</h1>
-        <input  id="search-input"required type="text" placeholder="chicken" className="input" autoComplete="off"
-            onChange={(change) => {
-                searchContent(change.target.value)
-            }}
-        />
-        </>
+    </>
     )
 
 

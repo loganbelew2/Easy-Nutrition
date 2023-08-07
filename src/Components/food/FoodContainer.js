@@ -18,7 +18,6 @@ export const FoodContainer = () => {
     }, [])
 
     return (<>
-        <div>Start your nutrition journey today!</div>
         <section>
         <SearchFood searchContent={searchInput} listArray={Lists} setList={setSelectedList} />
         < DisplayFood searchState={searchedFood} myList={selectedList} />

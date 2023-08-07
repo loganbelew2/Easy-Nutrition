@@ -14,3 +14,12 @@ p {
     display: inline;
     font-weight: 500;
 }
+.name--label {
+    margin-right: 10px;
+}
+.createList--header {
+    margin: 40px 0px 20px 0px;
+}
+.category--select {
+    margin-left: 10px;
+}

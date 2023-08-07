@@ -1,5 +1,6 @@
 .button {
     font-weight: 300;
+    display: inline;
 }
 
 .select {
@@ -8,4 +9,14 @@
 }
 .input {
     background-color: white;
+}
+.searchFood--header {
+    margin-top: 30px;
+    background-color: white;
+}
+.selectList {
+    margin-bottom: 30px;
+}
+h5 {
+    display: inline;
 }

@@ -30,12 +30,10 @@ export const Login = () => {
 
     return (
         <main className="container--login">
-            <section>
                 <form name="Login" className="form--login" onSubmit={handleLogin}>
-                    <h1> Welcome to Easy Nutrition</h1>
-                    <h2>Please sign in</h2>
+                    <h1 className="login--header"> Welcome to Easy Nutrition</h1>
+                    <h2 className="signIn">Please sign in</h2>
                     <fieldset className="login-fieldset">
-                        <label htmlFor="inputEmail"> Email address </label>
                         <input type="email"
                             autoComplete="email"
                             value={email}
@@ -50,11 +48,8 @@ export const Login = () => {
                             Sign in
                         </button>
                     </fieldset>
+                    <Link className="register" to="/register">Not a member? Register!</Link>
                 </form>
-            </section>
-            <section className="link--register">
-                <Link className="register" to="/register">Not a member? Register!</Link>
-            </section>
         </main>
     )
 }

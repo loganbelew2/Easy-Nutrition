@@ -45,19 +45,18 @@ export const CreateList = () => {
   return (
     <>
       <form name="createList">
-        <h2>Create Your List</h2>
+        <h2 className="createList--header">Create Your List</h2>
 
         <fieldset>
-          <label htmlFor="names">Name of List</label>
+          <label className="name--label" htmlFor="names">Name of List</label>
           <input id="names" value={name} onChange={(evt) => setName(evt.target.value)} required type="text"/>
-        </fieldset>
 
-        <fieldset>
-          <select required onChange={(evt) => setCategory(evt.target.value)}>
+          <select className="category--select" required onChange={(evt) => setCategory(evt.target.value)}>
             <option value={0}>Select a category</option>
             {categories.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option>)}
           </select>
         </fieldset>
+        
 
         {formError && <p>Please fill out all fields.</p>}
 

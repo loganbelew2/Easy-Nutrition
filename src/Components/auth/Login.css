@@ -6,12 +6,20 @@
 .form--login {
     display: flex;
     flex-flow:column;
+    height: 400px;
+}
+.login--section {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
 }
 
 .login-fieldset {
     align-self: center;
 }
-
+.signIn {
+    border-top: 10px dotted white;
+}
 button {
     font-weight: 300;
     background-color: white;
@@ -19,4 +27,13 @@ button {
 
 .register {
     color: black;
+    margin-top: 20px;
+    align-self: center;
+}
+
+h1 {
+    background-color: white;
+}
+.login--header {
+    margin-bottom: 40px;
 }
